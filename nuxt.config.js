@@ -38,35 +38,6 @@ module.exports = {
 
   css: ['~/assets/style/index.sass'],
 
-  axios: {
-    baseURL: 'https://api.quwi.com/v2/'
-  },
-
-  plugins: [{ src: '~/plugins/localStorage.js', ssr: false }],
-
-  // router: {
-  //   middleware: ['authLogged']
-  // },
-
-  modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/auth'
-  ]
-
-  // auth: {
-  //   strategies: {
-  //     local: {
-  //       endpoints: {
-  //         login: { url: 'auth/login', method: 'post', propertyName: 'token' },
-  //         user: false,
-  //         logout: false
-  //       }
-  //     }
-  //   },
-  //   localStorage: false,
-  //   cookie: {
-  //     prefix: 'auth'
-  //   }
-  // }
+  plugins: [{ src: '~/plugins/localStorage.js', ssr: false }]
 }
 

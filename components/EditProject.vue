@@ -12,9 +12,14 @@
       </p>
       <input v-model="projectName" type="text" placeholder="Project name" class="base-input">
     </label>
-    <button class="base-button" @click="submitProjectEdition">
-      Submit
-    </button>
+    <div class="d-flex">
+      <button class="base-button base-button--grey mr-3" @click="cancelProjectEdition">
+        Go back
+      </button>
+      <button class="base-button" @click="submitProjectEdition">
+        Submit
+      </button>
+    </div>
   </div>
 </template>
 
@@ -41,14 +46,15 @@
       async submitProjectEdition () {
         try {
           const { data: { project } } = await editProjectName(this.accessToken, this.project.id, this.projectName);
-          console.log('submitProjectEdition', project);
           this.$emit('editProjectDone', project);
           this.error = '';
         } catch (e) {
           this.error = e.response.data.message;
-          console.dir(e);
           console.error(e);
         }
+      },
+      cancelProjectEdition () {
+        this.$emit('cancelProjectEdition');
       }
     },
     created() {

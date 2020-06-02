@@ -40,6 +40,7 @@
       align-items: center
       height: 100%
       padding: 0 .5rem
+      margin: 0
       text-decoration: none
       text-transform: uppercase
       color: #636363
@@ -47,5 +48,4 @@
       cursor: pointer
       &:hover
         background: #e0e0e0
-
 </style>

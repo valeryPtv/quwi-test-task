@@ -2,7 +2,12 @@
   <div class="home-page">
     <Navbar />
     <div class="home-page__container container pt-6">
-      <EditProject v-if="editingProject" :project="editingProject" @editProjectDone="handleProjectEditDone" />
+      <EditProject
+        v-if="editingProject"
+        :project="editingProject"
+        @editProjectDone="handleProjectEditDone"
+        @cancelProjectEdition="cancelProjectEdition"
+      />
       <template v-else>
       <ProjectBar
         v-for="project in projects"
@@ -13,18 +18,16 @@
       />
       </template>
     </div>
-<!--    index-->
-<!--    <nuxt-link to="/sign-in">sign in</nuxt-link>-->
   </div>
 
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Navbar from "@/components/Navbar";
 import ProjectBar from "@/components/ProjectBar";
 import EditProject from "@/components/EditProject";
 import { getProjects } from '@/services';
-import { mapState } from 'vuex';
 import { getAccessTokenFromCookie } from "@/utilities";
 
 export default {
@@ -39,12 +42,8 @@ export default {
     editingProject: null
   }),
   async asyncData({ store, req }) {
-    // console.log('accessToken', store.state);
-    console.log(getAccessTokenFromCookie(req), getAccessTokenFromCookie(req));
     let accessToken = store.state.accessToken || getAccessTokenFromCookie(req);
-    console.log('accessToken', accessToken);
     const { data: { projects } } = await getProjects(accessToken);
-    console.log('res', projects);
     return { projects };
   },
   computed: {
@@ -54,9 +53,12 @@ export default {
     editProject (project) {
       this.editingProject = project;
     },
-    async handleProjectEditDone (editedProject) {
+    async handleProjectEditDone () {
       const { data: { projects } } = await getProjects(this.accessToken);
       this.projects = projects;
+      this.editingProject = null;
+    },
+    cancelProjectEdition () {
       this.editingProject = null;
     }
   }

@@ -32,15 +32,10 @@
         // console.log('this.$auth', this.$auth);
         try {
           const response = await this.signin({ email: this.email, password: this.password });
-          console.log('handleClickSignin response', response);
-          console.dir(response);
           this.errors = [];
           this.$router.push({ path: '/' })
         } catch(e) {
           console.error(e);
-          // console.dir(e);
-          // console.warn(e.message);
-          // console.warn(Object.values(e.response.data.first_errors));
           this.errors = Object.values(e.response.data.first_errors);
         }
       }

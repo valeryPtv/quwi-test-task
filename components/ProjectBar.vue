@@ -1,6 +1,6 @@
 <template>
   <div class="project-bar" @click="handleClickEditProject">
-    <img :src="project.logo_url" :alt="project.name" class="project-bar__logo mr-2" />
+    <img :src="project.logo_url" :alt="project.name" class="project-bar__logo mr-3" />
     <p class="project-bar__title">{{ project.name }}</p>
     <p
       class="project-bar__status"
@@ -10,7 +10,7 @@
     </p>
     <div class="project-bar__stats">
       <div class="project-bar__stats-row">
-        Time this week
+        time this week
         <span class="ml-3 text-bold">{{ formatTime(project.spent_time_week) }}</span>
       </div>
       <div class="project-bar__stats-row">
@@ -53,25 +53,26 @@
     width: 100%
     max-width: 650px
     background: #fff
-    padding: 20px
+    padding: 20px 20px 20px 35px
     font-size: .9rem
     cursor: pointer
 
     &__title
-      flex-grow: 1
+      flex-grow: 3
+      font-weight: bold
 
     &__logo
       width: 35px
       height: 35px
 
     &__status
+      font-weight: bold
       flex-grow: 2
       color: red
       &--active
         color: green
 
     &__stats
-      /*font-size: .9rem*/
       &-row
         display: flex
         justify-content: space-between
