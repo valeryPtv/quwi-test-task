@@ -17,7 +17,15 @@ export const signin = (credentials) => {
 }
 
 export const getProjects = (token) => {
-  return api.get('/projects-manage/index',{
+  const config = {
     headers: { Authorization: `Bearer ${token}` }
-  })
+  };
+  return api.get('projects-manage/index',config)
+}
+
+export const editProjectName = (token, projectId, name) => {
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  };
+  return api.post(`projects-manage/update?id=${projectId}`, { name }, config)
 }

@@ -44,29 +44,29 @@ module.exports = {
 
   plugins: [{ src: '~/plugins/localStorage.js', ssr: false }],
 
-  router: {
-    middleware: ['authLogged']
-  },
+  // router: {
+  //   middleware: ['authLogged']
+  // },
 
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth'
-  ],
+  ]
 
-  auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: 'auth/login', method: 'post', propertyName: 'token' },
-          user: false,
-          logout: false
-        }
-      }
-    },
-    localStorage: false,
-    cookie: {
-      prefix: 'auth'
-    }
-  }
+  // auth: {
+  //   strategies: {
+  //     local: {
+  //       endpoints: {
+  //         login: { url: 'auth/login', method: 'post', propertyName: 'token' },
+  //         user: false,
+  //         logout: false
+  //       }
+  //     }
+  //   },
+  //   localStorage: false,
+  //   cookie: {
+  //     prefix: 'auth'
+  //   }
+  // }
 }
 

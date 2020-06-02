@@ -1,5 +1,5 @@
 <template>
-  <div class="project-bar">
+  <div class="project-bar" @click="handleClickEditProject">
     <img :src="project.logo_url" :alt="project.name" class="project-bar__logo mr-2" />
     <p class="project-bar__title">{{ project.name }}</p>
     <p
@@ -11,15 +11,15 @@
     <div class="project-bar__stats">
       <div class="project-bar__stats-row">
         Time this week
-        <span class="ml-3 text-bold">{{ project.spent_time_week }}</span>
+        <span class="ml-3 text-bold">{{ formatTime(project.spent_time_week) }}</span>
       </div>
       <div class="project-bar__stats-row">
         this month
-        <span class="ml-3 text-bold">{{ project.spent_time_month }}</span>
+        <span class="ml-3 text-bold">{{ formatTime(project.spent_time_month) }}</span>
       </div>
       <div class="project-bar__stats-row">
         total
-        <span class="ml-3 text-bold">{{ project.spent_time_all }}</span>
+        <span class="ml-3 text-bold">{{ formatTime(project.spent_time_all) }}</span>
       </div>
     </div>
   </div>
@@ -33,6 +33,14 @@
         type: Object,
         default: () => ({})
       }
+    },
+    methods: {
+      formatTime (seconds) {
+        return new Date(seconds * 1000).toISOString().substr(11, 8);
+      },
+      handleClickEditProject () {
+        this.$emit('editProject');
+      }
     }
   }
 </script>
@@ -42,8 +50,12 @@
     display: flex
     justify-content: space-between
     align-items: center
+    width: 100%
+    max-width: 650px
     background: #fff
     padding: 20px
+    font-size: .9rem
+    cursor: pointer
 
     &__title
       flex-grow: 1

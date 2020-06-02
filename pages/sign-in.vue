@@ -5,7 +5,7 @@
       <p v-for="(error, index) in errors" :key="`e-${index}`" class="error-message mb-2">
         {{error}}
       </p>
-      <input v-model="email" class="base-input mb-2" type="text" placeholder="Email">
+      <input v-model="email" class="base-input mb-2" type="email" placeholder="Email">
       <input v-model="password" class="base-input mb-3" type="password" placeholder="Password">
       <button class="base-button" @click="handleClickSignin">
         Login

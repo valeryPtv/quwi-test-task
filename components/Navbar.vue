@@ -12,12 +12,7 @@
 
 <script>
   export default {
-    name: 'Navbar',
-    methods: {
-      handleLogout () {
-
-      }
-    }
+    name: 'Navbar'
   }
 </script>
 <style lang="sass">

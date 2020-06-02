@@ -1,4 +1,5 @@
-import { signin } from '@/services'
+import { signin } from '@/services';
+import * as Cookies from 'js-cookie';
 
 export const state = () => ({
   accessToken: ''
@@ -16,6 +17,7 @@ export const actions = {
       const { data } = await signin (credentials);
       console.log('signin action', data);
       commit('setAccessToken', data.token);
+      Cookies.set('accessToken', data.token, {expires: 3, secure: false});
       return data;
     } catch (error) {
       throw error;
