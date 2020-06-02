@@ -1,8 +1,6 @@
 <template>
   <div class="app-wrapper">
-    <div class="container">
-      <nuxt/>
-    </div>
+    <nuxt/>
   </div>
 </template>
 

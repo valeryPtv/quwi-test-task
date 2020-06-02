@@ -1,58 +1,56 @@
 <template>
-  <div class="navbar">
-    <nav class="app-navbar m-guest">
-      <a href="/" class="app-quwi">
-        <img src="/img/quwi-logo.png" width="25px" height="25px">
-      </a>
-      <div class="b-menu" v-if="$route.path.indexOf('unsupported_browser') === -1">
-<!--        <language-selector :lang="$i18n.locale" @change="l => setLocale(l)" :showTitle="true"></language-selector>-->
-        <nuxt-link v-if="!['login'].includes($route.name) && $store.getters['webuser/isGuest']" to="/login">{{ $t('Login') }}</nuxt-link>
-        <nuxt-link v-if="!['signup', 'invite', 'index'].includes($route.name)" to="/signup">{{ $t('Signup') }}</nuxt-link>
-      </div>
-    </nav>
-  </div>
+  <nav class="navbar">
+    <nuxt-link :to="{ path: '/' }">
+      <img class="navbar__logo" src="~/assets/img/quwi-logo.png" alt="Quwi logo">
+    </nuxt-link>
+    <div class="navbar__actions">
+      <nuxt-link :to="{ path: '/' }" class="navbar__action-text mr-2">Projects</nuxt-link>
+      <p class="navbar__action-text">Logout</p>
+    </div>
+  </nav>
 </template>
 
 <script>
   export default {
-    name: "Navbar"
+    name: 'Navbar',
+    methods: {
+      handleLogout () {
+
+      }
+    }
   }
 </script>
 <style lang="sass">
-  .b-menu
-    /*line-height: @navbar-height;*/
-    /*height: @navbar-height;*/
-    display: inline-flex
-    justify-content: flex-end
-    flex: 1
-    a, span.e-link
+  .navbar
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: fixed
+    width: 100%
+    height: 45px
+    padding: 0 20px
+    background-color: #fafafa
+    box-shadow: 0 0 5px rgba(0, 0, 0, .25)
+
+    &__logo
+      width: 25px
+      height: 25px
+
+    &__actions
       display: flex
-      float: left
+      height: 100%
+
+    &__action-text
+      display: flex
       align-items: center
+      height: 100%
+      padding: 0 .5rem
+      text-decoration: none
       text-transform: uppercase
-      font-size: .8em
       color: #636363
-      padding: 0 15px
-      /*height: @navbar-height*/
-      white-space: nowrap
-
-      &.active, &:hover
-        /*color: @menu-red*/
-        /*background: @hover-light*/
-        text-decoration: none
-      &.m-current
-        /*color: @menu-red*/
-      .e-cnt-new
-        /*background: @menu-red*/
-        color: #fff
-        border-radius: 7px
-        padding: 1px 5px
-        margin-left: 5px
-        font-size: .8em
-        line-height: 1.4em
-
-    .b-avatar
-      display: flex
-      align-items: center
+      font-size: .8rem
+      cursor: pointer
+      &:hover
+        background: #e0e0e0
 
 </style>

@@ -1,14 +1,16 @@
 <template>
   <div class="sign-in">
-    <h2 class="sign-in__heading">Login</h2>
-    <p v-for="(error, index) in errors" :key="`e-${index}`" class="error-message mb-2">
-      {{error}}
-    </p>
-    <input v-model="email" class="base-input mb-2" type="text" placeholder="Email">
-    <input v-model="password" class="base-input mb-3" type="password" placeholder="Password">
-    <button class="base-button" @click="handleClickSignin">
-      Login
-    </button>
+    <div class="container">
+      <h2 class="sign-in__heading">Login</h2>
+      <p v-for="(error, index) in errors" :key="`e-${index}`" class="error-message mb-2">
+        {{error}}
+      </p>
+      <input v-model="email" class="base-input mb-2" type="text" placeholder="Email">
+      <input v-model="password" class="base-input mb-3" type="password" placeholder="Password">
+      <button class="base-button" @click="handleClickSignin">
+        Login
+      </button>
+    </div>
   </div>
 </template>
 
@@ -27,7 +29,7 @@
         signin: 'signin'
       }),
       async handleClickSignin () {
-        console.log('this.$auth', this.$auth);
+        // console.log('this.$auth', this.$auth);
         try {
           const response = await this.signin({ email: this.email, password: this.password });
           console.log('handleClickSignin response', response);
